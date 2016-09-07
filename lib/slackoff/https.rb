@@ -5,13 +5,12 @@ module Slackoff
       @uri = uri
     end
 
-    # body is a hash of data
-    def send(post)
+    def post(data)
       http = Net::HTTP.new(@uri.host, @uri.port)
       http.use_ssl = true
 
       request = Net::HTTP::Post.new(@uri.request_uri)
-      request.body = post.to_json
+      request.body = data
 
       response = http.request request
 
